@@ -15,7 +15,7 @@ const App = () => {
   const [filterSpecies, setFilterSpecies] = useState('All');
 
   useEffect(() => {
-    getDataFromApi().then((data) => setCharacters(data));
+    getDataFromApi().then((data) => setCharacters(data.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))));
   }, []);
 
   const handleFilterCharacters = (data) => {
@@ -38,8 +38,6 @@ const App = () => {
   };
 
   const renderDetailedCharacter = (props) => {
-    console.log(props.match.params.id);
-
     const routeCharacterId = props.match.params.id;
     const foundCharacter = characters.find((character) => character.id === parseInt(routeCharacterId));
     if (foundCharacter) {
