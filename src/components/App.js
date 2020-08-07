@@ -19,13 +19,13 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('state'));
+    const data = JSON.parse(localStorage.getItem('filter'));
     if (data) {
       setFilterName(data);
     }
   }, []);
   useEffect(() => {
-    localStorage.setItem('state', JSON.stringify(filterName));
+    localStorage.setItem('filter', JSON.stringify(filterName));
   });
 
   const handleFilterCharacters = (data) => {
