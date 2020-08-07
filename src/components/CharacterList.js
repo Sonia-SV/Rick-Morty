@@ -4,7 +4,9 @@ import '../stylesheets/layout/characterList.scss';
 
 const CharacterList = (props) => {
   const singleCharacter = props.characters.map((character) => {
-    return <Character key={character.id} name={character.name} species={character.species} image={character.image} />;
+    return (
+      <Character key={character.id} name={character.name} species={character.species} speciesType={character.speciesType} image={character.image} />
+    );
   });
   return <ul>{singleCharacter}</ul>;
 };

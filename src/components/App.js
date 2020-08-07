@@ -10,26 +10,33 @@ getDataFromApi();
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
-  const [filterText, setFilterText] = useState('');
+  const [filterName, setFilterName] = useState('');
+  const [filterSpecies, setFilterSpecies] = useState('All');
 
   useEffect(() => {
     getDataFromApi().then((data) => setCharacters(data));
   }, []);
 
-  const handleFilterText = (text) => {
-    setFilterText(text);
+  const handleFilterCharacters = (data) => {
+    if (data.key === 'name') {
+      setFilterName(data.value);
+    }
+    if (data.key === 'species') {
+      setFilterSpecies(data.value);
+    }
   };
 
-  const renderFilteredCharacters = () => {
-    return characters.filter((character) => {
-      return character.name.toLowerCase().includes(filterText.toLowerCase());
+  const renderFilteredCharacters = characters
+    .filter((character) => {
+      return character.name.toLowerCase().includes(filterName.toLowerCase());
+    })
+    .filter((character) => {
+      return filterSpecies === 'All' ? true : character.species === filterSpecies;
     });
-  };
-
   return (
     <div>
-      <Filters handleFilterText={handleFilterText} filterText={filterText} />
-      <CharacterList characters={renderFilteredCharacters()} />
+      <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} filterSpecies={filterSpecies} />
+      <CharacterList characters={renderFilteredCharacters} />
     </div>
   );
 };
