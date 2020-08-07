@@ -18,6 +18,16 @@ const App = () => {
     getDataFromApi().then((data) => setCharacters(data.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))));
   }, []);
 
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('state'));
+    if (data) {
+      setFilterName(data);
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('state', JSON.stringify(filterName));
+  });
+
   const handleFilterCharacters = (data) => {
     if (data.key === 'name') {
       setFilterName(data.value);
