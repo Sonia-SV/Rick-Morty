@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../stylesheets/layout/detailedCharacter.scss';
 
 const DetailedCharacter = (props) => {
@@ -6,7 +7,8 @@ const DetailedCharacter = (props) => {
   const { id, name, species, image, planet, episodes, status } = props;
   return (
     <div>
-      <img src={image} />
+      <Link to="/">Volver</Link>
+      <img src={image} alt={name} />
       <p>{id}</p>
       <p>{name}</p>
       <p>{species}</p>
