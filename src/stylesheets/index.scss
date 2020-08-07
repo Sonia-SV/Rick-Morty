@@ -1,3 +1,12 @@
 @import 'core/variables';
 @import 'core/mixins';
 @import 'core/reset';
+.page {
+  height: 100vh;
+  background: {
+    image: url('https://wallpapersite.com/images/pages/pic_h/14374.jpg');
+    repeat: no-repeat;
+    attachment: fixed;
+    size: cover;
+  }
+}

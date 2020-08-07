@@ -2,13 +2,15 @@
 @import '../core/variables';
 @import '../core/mixins';
 
-.filters {
+.header {
   position: fixed;
   top: 0;
-  right: 0;
   z-index: 3;
   background-color: $secondary-color;
-  width: 50%;
+  width: 100%;
   font-family: $primary-font;
   padding: 30px;
+  img {
+    width: 200px;
+  }
 }

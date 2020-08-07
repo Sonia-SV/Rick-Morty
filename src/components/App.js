@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Header from './Header';
 import Filters from './Filters';
-//import DetailedCharacter from './DetailedCharacter';
 import CharacterList from './CharacterList';
 import getDataFromApi from '../services/api';
-import '../stylesheets/app.scss';
 import DetailedCharacter from './DetailedCharacter';
+import '../stylesheets/app.scss';
 
 getDataFromApi();
 
@@ -68,15 +68,16 @@ const App = () => {
   };
 
   return (
-    <div>
+    <main>
+      <Header />
+      <Route exact path="/">
+        <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} filterSpecies={filterSpecies} />
+        <CharacterList characters={renderFilteredCharacters()} />
+      </Route>
       <Switch>
-        <Route exact path="/">
-          <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} filterSpecies={filterSpecies} />
-          <CharacterList characters={renderFilteredCharacters()} />
-        </Route>
         <Route exact path="/character/:id" render={renderDetailedCharacter} />
       </Switch>
-    </div>
+    </main>
   );
 };
 

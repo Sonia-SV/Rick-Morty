@@ -10,13 +10,13 @@ const Filters = (props) => {
     });
   };
   return (
-    <form>
+    <form className="filters">
       <label htmlFor="name">
-        Search a character:
+        Search by name:
         <input id="name" type="text" onChange={handleSearch} value={props.filterName} />
       </label>
       <label htmlFor="species">
-        Species:
+        Search by species:
         <select id="species" value={props.filterSpecies} onChange={handleSearch}>
           <option value="All">All</option>
           <option value="Human">Human</option>
