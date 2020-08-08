@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import '../stylesheets/layout/detailedCharacter.scss';
 
 const DetailedCharacter = (props) => {
-  console.log(props);
   const handleDetailContentClick = (event) => {
     event.preventDefault();
   };
@@ -32,7 +32,7 @@ const DetailedCharacter = (props) => {
           <div className="detail__card__info">
             <Link to="/" className="detail__card__info__link">
               <span>
-                <i class="fas fa-arrow-left"></i> Back
+                <i className="fas fa-arrow-left"></i> Back
               </span>
             </Link>
             <div className="detail__card__info__content">
@@ -66,3 +66,7 @@ const DetailedCharacter = (props) => {
 };
 
 export default DetailedCharacter;
+
+DetailedCharacter.propTypes = {
+  DetailedCharacter: PropTypes.object,
+};

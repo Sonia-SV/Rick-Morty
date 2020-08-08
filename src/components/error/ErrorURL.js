@@ -1,7 +1,7 @@
 import React from 'react';
-import '../stylesheets/layout/errorWarning.scss';
+import '../../stylesheets/layout/errorWarning.scss';
 
-const ErrorWarning = () => {
+const ErrorURL = () => {
   return (
     <section className="section__warning">
       <p>
@@ -12,4 +12,4 @@ const ErrorWarning = () => {
   );
 };
 
-export default ErrorWarning;
+export default ErrorURL;

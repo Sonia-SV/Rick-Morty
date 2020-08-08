@@ -6,7 +6,8 @@ import Filters from './Filters';
 import CharacterList from './CharacterList';
 import getDataFromApi from '../services/api';
 import DetailedCharacter from './DetailedCharacter';
-import ErrorWarning from './ErrorWarning';
+import ErrorURL from './error/ErrorURL';
+import ErrorFilter from './error/ErrorFilter';
 import '../stylesheets/app.scss';
 
 getDataFromApi();
@@ -14,7 +15,6 @@ getDataFromApi();
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [filterName, setFilterName] = useState('');
-  const [filterSpecies, setFilterSpecies] = useState('All');
 
   useEffect(() => {
     getDataFromApi().then((data) => setCharacters(data.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))));
@@ -34,20 +34,22 @@ const App = () => {
     if (data.key === 'name') {
       setFilterName(data.value);
     }
-    if (data.key === 'species') {
-      setFilterSpecies(data.value);
+    if (data.key === 'reset') {
+      setFilterName('');
     }
   };
 
   const renderFilteredCharacters = () => {
-    return characters
-      .filter((character) => {
-        return character.name.toLowerCase().includes(filterName.toLowerCase());
-      })
-      .filter((character) => {
-        return filterSpecies === 'All' ? true : character.species === filterSpecies;
-      });
+    return characters.filter((character) => {
+      return character.name.toLowerCase().includes(filterName.toLowerCase());
+    });
   };
+
+  const renderFilterResults = <CharacterList characters={renderFilteredCharacters()} />;
+
+  const renderFilterError = <ErrorFilter filterName={filterName} handleFilterCharacters={handleFilterCharacters} />;
+
+  const renderSearchResult = renderFilteredCharacters().length === 0 ? renderFilterError : renderFilterResults;
 
   const renderDetailedCharacter = (props) => {
     const routeCharacterId = props.match.params.id;
@@ -65,24 +67,24 @@ const App = () => {
         />
       );
     } else {
-      return <ErrorWarning />;
+      return <ErrorURL />;
     }
   };
 
   return (
-    <>
+    <React.Fragment>
       <Header />
       <main>
         <Route exact path="/">
-          <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} filterSpecies={filterSpecies} />
-          <CharacterList characters={renderFilteredCharacters()} />
+          <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} />
+          {renderSearchResult}
         </Route>
         <Switch>
           <Route exact path="/character/:id" render={renderDetailedCharacter} />
         </Switch>
       </main>
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

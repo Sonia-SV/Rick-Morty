@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import '../stylesheets/layout/character.scss';
 
 const Character = (props) => {
@@ -34,3 +35,7 @@ const Character = (props) => {
 };
 
 export default Character;
+
+Character.propTypes = {
+  character: PropTypes.object,
+};

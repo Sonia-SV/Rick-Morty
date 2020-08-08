@@ -18,6 +18,7 @@
     padding: 15px;
     cursor: default;
     &__img {
+      margin-top: 10px;
       border-radius: 10px;
       overflow: hidden;
       width: 250px;
@@ -38,7 +39,10 @@
         color: $secondary-color;
         font-weight: bold;
         order: 1;
-        //align-self: flex-start;
+        text-transform: uppercase;
+        &:active {
+          text-shadow: 0.5px 0.5px 1px $text-color;
+        }
       }
       &__content {
         font-size: 13px;
@@ -58,6 +62,9 @@
     &__card {
       flex-direction: row;
       align-items: normal;
+      &__img {
+        margin-top: 0;
+      }
       &__info {
         &__link {
           order: -1;
