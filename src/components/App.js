@@ -6,6 +6,7 @@ import Filters from './Filters';
 import CharacterList from './CharacterList';
 import getDataFromApi from '../services/api';
 import DetailedCharacter from './DetailedCharacter';
+import ErrorWarning from './ErrorWarning';
 import '../stylesheets/app.scss';
 
 getDataFromApi();
@@ -58,30 +59,30 @@ const App = () => {
           image={foundCharacter.image}
           status={foundCharacter.status}
           species={foundCharacter.species}
-          speciesType={foundCharacter.type}
+          gender={foundCharacter.gender}
           planet={foundCharacter.planet}
           episodes={foundCharacter.episodes}
         />
       );
     } else {
-      return <p>Not found</p>;
+      return <ErrorWarning />;
     }
   };
 
   return (
     <>
-    <Header />
+      <Header />
       <main>
-      <Route exact path="/">
-        <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} filterSpecies={filterSpecies} />
-        <CharacterList characters={renderFilteredCharacters()} />
-      </Route>
-      <Switch>
-        <Route exact path="/character/:id" render={renderDetailedCharacter} />
-      </Switch>
-    </main>
-    <Footer/>
-</>
+        <Route exact path="/">
+          <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} filterSpecies={filterSpecies} />
+          <CharacterList characters={renderFilteredCharacters()} />
+        </Route>
+        <Switch>
+          <Route exact path="/character/:id" render={renderDetailedCharacter} />
+        </Switch>
+      </main>
+      <Footer />
+    </>
   );
 };
 

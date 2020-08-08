@@ -1,8 +1,10 @@
 import React from 'react';
 import Character from './Character';
 import '../stylesheets/layout/characterList.scss';
+import ErrorWarning from './ErrorWarning';
 
 const CharacterList = (props) => {
+  const resultsLenght = props.characters.length;
   const singleCharacter = props.characters.map((character) => {
     return (
       <Character
@@ -16,7 +18,12 @@ const CharacterList = (props) => {
       />
     );
   });
-  return <section className="section">{singleCharacter}</section>;
+
+  const notFoundMessage = <ErrorWarning />;
+
+  const renderSearchResult = resultsLenght === 0 ? notFoundMessage : <section className="section__list">{singleCharacter}</section>;
+
+  return <>{renderSearchResult}</>;
 };
 
 export default CharacterList;

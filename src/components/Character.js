@@ -12,7 +12,10 @@ const Character = (props) => {
   return (
     <article className="article">
       <span className="article__icon">{speciesIcon}</span>
-      <img className="article__img" src={image} alt={name} />
+      <Link to={`/character/${id}`}>
+        <img className="article__img" src={image} alt={name} />
+      </Link>
+
       <div className="article__name">
         <h2>{name}</h2>
       </div>
