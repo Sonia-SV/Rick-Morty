@@ -1,11 +1,14 @@
+//FONT
 $primary-font: 'Orbitron', sans-serif;
 
+//COLOR
 $text-color: rgb(233, 233, 233);
-
 $main-color: rgb(35, 32, 75);
-//$secondary-color: #04afc6;
 $secondary-color: #63abb6;
 $secondary-color-low-opacity: #54a0ac42;
 $tertiary-color: #53b81f;
-
 $shadow-color: rgba(158, 158, 158, 1);
+
+//BREAKPOINTS
+$tablet: 768px;
+$desktop: 1024px;

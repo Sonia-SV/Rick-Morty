@@ -13,6 +13,8 @@
     @include card-style;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 15px;
     cursor: default;
     &__img {
@@ -29,15 +31,18 @@
       width: 300px;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: space-between;
       margin-left: 20px;
       &__link {
         color: $secondary-color;
         font-weight: bold;
-        align-self: flex-end;
+        order: 1;
+        //align-self: flex-start;
       }
       &__content {
         font-size: 13px;
+        margin: 10px;
 
         h3,
         p {
@@ -46,6 +51,21 @@
         &__title {
           text-decoration: underline;
         }
+      }
+    }
+  }
+  @include tablet {
+    &__card {
+      flex-direction: row;
+      align-items: normal;
+      &__info {
+        &__link {
+          order: -1;
+          align-self: flex-end;
+        }
+      }
+      &__content {
+        margin: 0;
       }
     }
   }

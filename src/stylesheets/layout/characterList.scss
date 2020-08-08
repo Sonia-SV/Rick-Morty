@@ -7,6 +7,10 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 250px));
   grid-gap: 15px;
   justify-content: space-evenly;
-  margin-top: 105px;
+  margin-top: 175px;
   margin-bottom: 50px;
+
+  @include tablet {
+    margin-top: 105px;
+  }
 }

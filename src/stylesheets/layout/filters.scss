@@ -3,8 +3,10 @@
 @import '../core/mixins';
 
 .filters {
+  background-color: $secondary-color;
   position: fixed;
-  top: 0;
+  top: 70px;
+  width: 100%;
   right: 0;
   z-index: 3;
   padding-right: 50px;
@@ -33,5 +35,10 @@
     border: 6px solid transparent;
     border-radius: 5px;
     font-size: 12px;
+  }
+  @include tablet {
+    top: 0;
+    background-color: transparent;
+    width: auto;
   }
 }
