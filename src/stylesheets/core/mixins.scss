@@ -6,12 +6,6 @@
   }
 }
 
-@mixin desktop {
-  @media all and (min-width: $desktop) {
-    @content;
-  }
-}
-
 // CARD STYLES
 
 @mixin card-style {

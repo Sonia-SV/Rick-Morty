@@ -7,6 +7,9 @@
     image: url('https://wallpapersite.com/images/pages/pic_h/14374.jpg');
     repeat: no-repeat;
     attachment: fixed;
-    size: cover;
+    size: contain;
+  }
+  @include tablet {
+    background-size: cover;
   }
 }
