@@ -7,8 +7,8 @@
   top: 0;
   right: 0;
   z-index: 3;
-  margin-right: 30px;
-  height: 125px;
+  padding-right: 50px;
+  height: 100px;
   font-family: $primary-font;
   padding: 30px;
   display: flex;
@@ -21,16 +21,17 @@
     color: $main-color;
   }
   &__name {
+    font-size: 13px;
     margin-bottom: 10px;
     display: block;
   }
   &__input {
-    width: 180px;
-    height: 100px;
-    padding: 5px 10px;
+    width: 140px;
+    padding: 3px 10px;
     background-color: $main-color;
     color: $text-color;
     border: 6px solid transparent;
     border-radius: 5px;
+    font-size: 12px;
   }
 }
