@@ -5,8 +5,12 @@
   height: 100vh;
   background: {
     image: url('https://wallpapersite.com/images/pages/pic_h/14374.jpg');
-    repeat: no-repeat;
-    attachment: fixed;
     size: cover;
+  }
+  @include tablet {
+    background {
+      attachment: fixed;
+      repeat: no-repeat;
+    }
   }
 }
