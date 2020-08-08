@@ -12,10 +12,11 @@ const CharacterList = (props) => {
         species={character.species}
         speciesType={character.speciesType}
         image={character.image}
+        gender={character.gender}
       />
     );
   });
-  return <ul>{singleCharacter}</ul>;
+  return <section className="section">{singleCharacter}</section>;
 };
 
 export default CharacterList;

@@ -1,3 +1,73 @@
 @import '../core/reset';
 @import '../core/variables';
 @import '../core/mixins';
+
+.article {
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  @include card-style;
+
+  &__icon {
+    font-size: 40px;
+    background-color: $tertiary-color;
+    border-radius: 55px;
+    width: 55px;
+    height: 55px;
+    line-height: 65px;
+    z-index: 1;
+    align-self: flex-end;
+  }
+  &__img {
+    width: 100%;
+    clip-path: circle(70% at 50% 25%);
+    margin-top: -55px;
+  }
+  &__name {
+    height: 50px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    h2 {
+      font-size: 20px;
+    }
+  }
+  &__species {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    span {
+      font-size: 13px;
+      display: block;
+      margin-top: 5px;
+      font-weight: normal;
+    }
+  }
+  &__button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    div {
+      background: {
+        image: url('../../img/spiral.png');
+        size: cover;
+      }
+      height: 60px;
+      width: 70px;
+    }
+    p {
+      font-size: 12px;
+      margin: 10px;
+    }
+  }
+}

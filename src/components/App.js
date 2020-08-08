@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 import Filters from './Filters';
-//import DetailedCharacter from './DetailedCharacter';
 import CharacterList from './CharacterList';
 import getDataFromApi from '../services/api';
-import '../stylesheets/app.scss';
 import DetailedCharacter from './DetailedCharacter';
+import '../stylesheets/app.scss';
 
 getDataFromApi();
 
@@ -19,13 +20,13 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('state'));
+    const data = JSON.parse(localStorage.getItem('filter'));
     if (data) {
       setFilterName(data);
     }
   }, []);
   useEffect(() => {
-    localStorage.setItem('state', JSON.stringify(filterName));
+    localStorage.setItem('filter', JSON.stringify(filterName));
   });
 
   const handleFilterCharacters = (data) => {
@@ -68,15 +69,19 @@ const App = () => {
   };
 
   return (
-    <div>
+    <>
+    <Header />
+      <main>
+      <Route exact path="/">
+        <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} filterSpecies={filterSpecies} />
+        <CharacterList characters={renderFilteredCharacters()} />
+      </Route>
       <Switch>
-        <Route exact path="/">
-          <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} filterSpecies={filterSpecies} />
-          <CharacterList characters={renderFilteredCharacters()} />
-        </Route>
         <Route exact path="/character/:id" render={renderDetailedCharacter} />
       </Switch>
-    </div>
+    </main>
+    <Footer/>
+</>
   );
 };
 

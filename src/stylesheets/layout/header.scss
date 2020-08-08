@@ -1,0 +1,17 @@
+@import '../core/reset';
+@import '../core/variables';
+@import '../core/mixins';
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  background-color: $secondary-color;
+  width: 100%;
+  height: 125px;
+  font-family: $primary-font;
+  padding: 10px 50px;
+  img {
+    width: 300px;
+  }
+}

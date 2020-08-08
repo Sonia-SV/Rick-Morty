@@ -1,0 +1,14 @@
+@import '../core/reset';
+@import '../core/variables';
+@import '../core/mixins';
+
+.footer {
+  background-color: $secondary-color-low-opacity;
+  padding: 20px 30px;
+  small {
+    width: 100%;
+    text-align: right;
+    font-family: $primary-font;
+    color: $text-color;
+  }
+}
