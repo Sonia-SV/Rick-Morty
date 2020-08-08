@@ -13,14 +13,39 @@
     @include card-style;
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: 15px;
+    cursor: default;
     &__img {
-      border-radius: 5px;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 250px;
+      height: 250px;
+      object-fit: fill;
+      img {
+        width: 100%;
+      }
     }
     &__info {
-      a {
-        padding-top: 100px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: 20px;
+      &__link {
+        color: $secondary-color;
+        font-weight: bold;
+        align-self: flex-end;
+      }
+      &__content {
+        font-size: 13px;
+
+        h3,
+        p {
+          padding-bottom: 10px;
+        }
+        &__title {
+          text-decoration: underline;
+        }
       }
     }
   }
