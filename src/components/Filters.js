@@ -11,18 +11,19 @@ const Filters = (props) => {
   };
   return (
     <form className="filters">
-      <label htmlFor="name">
-        Search by name:
-        <input id="name" type="text" onChange={handleSearch} value={props.filterName} />
+      <label htmlFor="name" className="filters__label">
+        <span className="filters__name">Search by name: </span>
+        <input id="name" type="text" onChange={handleSearch} className="filters__input" value={props.filterName} />
       </label>
-      <label htmlFor="species">
-        Search by species:
-        <select id="species" value={props.filterSpecies} onChange={handleSearch}>
+      <label htmlFor="species" className="filters__label">
+        <span className="filters__name"> Search by species: </span>
+
+        <select id="species" value={props.filterSpecies} className="filters__input" onChange={handleSearch}>
           <option value="All">All</option>
           <option value="Human">Human</option>
           <option value="Alien">Alien</option>
-          {/* <option value="Humanoid">Humanoid</option>
-          <option value="Unknown">Unknown</option> */}
+          <option value="Humanoid">Humanoid</option>
+          <option value="Unknown">Unknown</option>
         </select>
       </label>
     </form>

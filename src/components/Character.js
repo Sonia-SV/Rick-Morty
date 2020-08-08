@@ -22,10 +22,10 @@ const Character = (props) => {
           <span>{speciesDescription}</span>
         </p>
       </div>
-      <div className="article__button">
-        <Link to={`/character/${id}`}></Link>
+      <Link className="article__button" to={`/character/${id}`}>
+        <div></div>
         <p>More info...</p>
-      </div>
+      </Link>
     </article>
   );
 };

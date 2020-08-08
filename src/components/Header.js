@@ -5,13 +5,13 @@ import '../stylesheets/layout/header.scss';
 
 const Header = () => {
   return (
-    <div className="header">
+    <header className="header">
       <Link to="/">
         <h1 className="header__title">
           <img src={logo} alt="Rick and Morty logo"></img>
         </h1>
       </Link>
-    </div>
+    </header>
   );
 };
 

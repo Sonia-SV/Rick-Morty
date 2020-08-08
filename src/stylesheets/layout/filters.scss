@@ -7,8 +7,30 @@
   top: 0;
   right: 0;
   z-index: 3;
-  background-color: $secondary-color;
-  width: 50%;
+  margin-right: 30px;
+  height: 125px;
   font-family: $primary-font;
   padding: 30px;
+  display: flex;
+  justify-content: center;
+  &__label {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: $main-color;
+  }
+  &__name {
+    margin-bottom: 10px;
+    display: block;
+  }
+  &__input {
+    width: 180px;
+    height: 100px;
+    padding: 5px 10px;
+    background-color: $main-color;
+    color: $text-color;
+    border: 6px solid transparent;
+    border-radius: 5px;
+  }
 }

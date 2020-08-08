@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
+import Footer from './Footer';
 import Filters from './Filters';
 import CharacterList from './CharacterList';
 import getDataFromApi from '../services/api';
@@ -68,8 +69,9 @@ const App = () => {
   };
 
   return (
-    <main>
-      <Header />
+    <>
+    <Header />
+      <main>
       <Route exact path="/">
         <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} filterSpecies={filterSpecies} />
         <CharacterList characters={renderFilteredCharacters()} />
@@ -78,6 +80,8 @@ const App = () => {
         <Route exact path="/character/:id" render={renderDetailedCharacter} />
       </Switch>
     </main>
+    <Footer/>
+</>
   );
 };
 

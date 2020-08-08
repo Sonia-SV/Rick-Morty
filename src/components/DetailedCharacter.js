@@ -6,16 +6,20 @@ const DetailedCharacter = (props) => {
   console.log(props);
   const { id, name, species, image, planet, episodes, status } = props;
   return (
-    <div>
-      <Link to="/">Volver</Link>
-      <img src={image} alt={name} />
-      <p>{id}</p>
-      <p>{name}</p>
-      <p>{species}</p>
-      <p>{planet}</p>
-      <p>{episodes}</p>
-      <p>{status}</p>
-    </div>
+    <article className="detail">
+      <div className="detail__card">
+        <img className="detail__card__img" src={image} alt={name} />
+        <div clasName="detail__card__info">
+          <p>{id}</p>
+          <p>Name: {name}</p>
+          <p>Species: {species}</p>
+          <p>Origin: {planet}</p>
+          <p>Nº episodes: {episodes}</p>
+          <p>Life situation: {status}</p>
+          <Link to="/">Volver</Link>
+        </div>
+      </div>
+    </article>
   );
 };
 
