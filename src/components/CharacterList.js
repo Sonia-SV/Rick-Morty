@@ -12,7 +12,8 @@ const CharacterList = (props) => {
         species={character.species}
         speciesType={character.speciesType}
         image={character.image}
-        gender={character.gender}
+        status={character.status}
+        renderStatusIcon={props.renderStatusIcon}
       />
     );
   });
@@ -24,4 +25,5 @@ export default CharacterList;
 
 CharacterList.propTypes = {
   characters: PropTypes.array,
+  renderStatusIcon: PropTypes.func,
 };

@@ -12,12 +12,8 @@
   @include card-style;
 
   &__icon {
-    font-size: 30px;
-    background-color: $tertiary-color;
-    border-radius: 55px;
     width: 45px;
     height: 45px;
-    line-height: 50px;
     z-index: 1;
     align-self: flex-end;
   }

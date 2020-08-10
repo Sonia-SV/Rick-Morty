@@ -7,20 +7,7 @@ const DetailedCharacter = (props) => {
   const handleDetailContentClick = (event) => {
     event.preventDefault();
   };
-  const { name, species, image, planet, episodes, status, gender } = props;
-  const genderIcon = gender === 'Female' ? '👱🏼‍♀️' : '🧔🏽';
-
-  const speciesIcon = species === 'Human' ? genderIcon : '👽';
-
-  const lifeStatus = () => {
-    if (status === 'Alive') {
-      return '💙';
-    } else if (status === 'Dead') {
-      return '💀';
-    } else if (status === 'unknown') {
-      return '❓';
-    }
-  };
+  const { name, species, image, planet, episodes, status } = props;
 
   return (
     <Link to="/">
@@ -35,19 +22,19 @@ const DetailedCharacter = (props) => {
                 <i className="fas fa-arrow-left"></i> Back
               </span>
             </Link>
+            <img className="detail__card__icon" src={props.renderStatusIcon(species, status)} alt={'iconDescription'} />
             <div className="detail__card__info__content">
               <h3>
                 <span className="detail__card__info__content__title">Name:</span> <span className="detail__card__info__content__result"> {name}</span>
               </h3>
               <p>
                 <span className="detail__card__info__content__title">Species:</span>
-                <span className="detail__card__info__content__result"> {species}</span> <span>{speciesIcon}</span>
+                <span className="detail__card__info__content__result"> {species}</span>
               </p>
 
               <p>
                 <span className="detail__card__info__content__title">Life situation:</span>
                 <span className="detail__card__info__content__result"> {status} </span>
-                <span>{lifeStatus()}</span>
               </p>
               <p>
                 <span className="detail__card__info__content__title">Origin:</span>
@@ -68,5 +55,11 @@ const DetailedCharacter = (props) => {
 export default DetailedCharacter;
 
 DetailedCharacter.propTypes = {
-  DetailedCharacter: PropTypes.object,
+  episodes: PropTypes.number,
+  image: PropTypes.string,
+  name: PropTypes.string,
+  planet: PropTypes.string,
+  species: PropTypes.string,
+  status: PropTypes.string,
+  renderStatusIcon: PropTypes.func,
 };

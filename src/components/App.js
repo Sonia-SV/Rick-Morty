@@ -8,6 +8,12 @@ import getDataFromApi from '../services/api';
 import DetailedCharacter from './DetailedCharacter';
 import ErrorURL from './error/ErrorURL';
 import ErrorFilter from './error/ErrorFilter';
+import AlienAlive from '../img/AlienAlive.png';
+import AlienDead from '../img/AlienDead.png';
+import Alienunknown from '../img/Alienunknown.png';
+import HumanAlive from '../img/HumanAlive.png';
+import HumanDead from '../img/HumanDead.png';
+import Humanunknown from '../img/Humanunknown.png';
 import '../stylesheets/app.scss';
 
 getDataFromApi();
@@ -39,13 +45,30 @@ const App = () => {
     }
   };
 
+  const renderStatusIcon = (species, status) => {
+    if (species === 'Human') {
+      if (status === 'Alive') {
+        return HumanAlive;
+      } else if (status === 'Dead') {
+        return HumanDead;
+      } else {
+        return Humanunknown;
+      }
+    } else if (status === 'Alive') {
+      return AlienAlive;
+    } else if (status === 'Dead') {
+      return AlienDead;
+    } else {
+      return Alienunknown;
+    }
+  };
   const renderFilteredCharacters = () => {
     return characters.filter((character) => {
       return character.name.toLowerCase().includes(filterName.toLowerCase());
     });
   };
 
-  const renderFilterResults = <CharacterList characters={renderFilteredCharacters()} />;
+  const renderFilterResults = <CharacterList characters={renderFilteredCharacters()} renderStatusIcon={renderStatusIcon} />;
 
   const renderFilterError = <ErrorFilter filterName={filterName} handleFilterCharacters={handleFilterCharacters} />;
 
@@ -61,9 +84,9 @@ const App = () => {
           image={foundCharacter.image}
           status={foundCharacter.status}
           species={foundCharacter.species}
-          gender={foundCharacter.gender}
           planet={foundCharacter.planet}
           episodes={foundCharacter.episodes}
+          renderStatusIcon={renderStatusIcon}
         />
       );
     } else {
@@ -74,7 +97,7 @@ const App = () => {
   return (
     <React.Fragment>
       <Header />
-      <main>
+      <main className="main">
         <Route exact path="/">
           <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} />
           {renderSearchResult}

@@ -4,15 +4,13 @@ import PropTypes from 'prop-types';
 import '../stylesheets/layout/character.scss';
 
 const Character = (props) => {
-  const { id, name, image, species, speciesType, gender } = props;
-
-  const genderIcon = gender === 'Female' ? '👱🏼‍♀️' : '🧔🏽';
-  const speciesIcon = species === 'Human' ? genderIcon : '👽';
+  const { id, name, image, species, speciesType, status } = props;
 
   const speciesDescription = speciesType !== '' ? `-${speciesType}-` : '';
   return (
     <article className="article">
-      <span className="article__icon">{speciesIcon}</span>
+      <img className="article__icon" src={props.renderStatusIcon(species, status)} alt={'iconDescription'} />
+
       <Link to={`/character/${id}`}>
         <img className="article__img" src={image} alt={name} />
       </Link>
@@ -37,5 +35,11 @@ const Character = (props) => {
 export default Character;
 
 Character.propTypes = {
-  character: PropTypes.object,
+  id: PropTypes.number,
+  image: PropTypes.string,
+  name: PropTypes.string,
+  species: PropTypes.string,
+  speciesType: PropTypes.string,
+  status: PropTypes.string,
+  renderStatusIcon: PropTypes.func,
 };
