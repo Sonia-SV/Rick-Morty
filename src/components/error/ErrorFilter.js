@@ -12,10 +12,7 @@ const ErrorFilter = (props) => {
   return (
     <section className="section__warning">
       <p>
-        <span>There's no one </span> <span>here called</span>
-        <span>
-          <em>{props.filterName}</em>
-        </span>
+        <span>The creature that you are looking for isn't here</span>
       </p>
       <button id="reset" onClick={handleReset}>
         Try again!

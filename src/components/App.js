@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import getDataFromApi from '../services/api';
+import localStorage from '../services/localStorage.js';
 import Header from './Header';
 import Footer from './Footer';
 import Filters from './Filters';
 import CharacterList from './CharacterList';
-import getDataFromApi from '../services/api';
 import DetailedCharacter from './DetailedCharacter';
 import ErrorURL from './error/ErrorURL';
 import ErrorFilter from './error/ErrorFilter';
@@ -21,19 +22,25 @@ getDataFromApi();
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [filterName, setFilterName] = useState('');
+  const [filterSpecies, setFilterSpecies] = useState('All');
+  const [filterStatus, setFilterStatus] = useState('All');
 
   useEffect(() => {
     getDataFromApi().then((data) => setCharacters(data.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))));
   }, []);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('filter'));
-    if (data) {
-      setFilterName(data);
-    }
+    // const data = JSON.parse(localStorage.getItem('localData'));
+    // if (data) {
+    //   setFilterName(data);
+    //   setFilterStatus(data);
+    //   setFilterSpecies(data);
+    // }
+    let localInfo = localStorage.get('localData', {});
   }, []);
   useEffect(() => {
-    localStorage.setItem('filter', JSON.stringify(filterName));
+    localStorage.set('localData', { filterName, filterSpecies, filterStatus });
+    // localStorage.setItem('filter', JSON.stringify(filterName, filterSpecies, filterStatus));
   });
 
   const handleFilterCharacters = (data) => {
@@ -42,6 +49,14 @@ const App = () => {
     }
     if (data.key === 'reset') {
       setFilterName('');
+      setFilterSpecies('All');
+      setFilterStatus('All');
+    }
+    if (data.key === 'species') {
+      setFilterSpecies(data.value);
+    }
+    if (data.key === 'status') {
+      setFilterStatus(data.value);
     }
   };
 
@@ -63,14 +78,23 @@ const App = () => {
     }
   };
   const renderFilteredCharacters = () => {
-    return characters.filter((character) => {
-      return character.name.toLowerCase().includes(filterName.toLowerCase());
-    });
+    return characters
+      .filter((character) => {
+        return character.name.toLowerCase().includes(filterName.toLowerCase());
+      })
+      .filter((character) => {
+        return filterSpecies === 'All' ? true : character.species === filterSpecies;
+      })
+      .filter((character) => {
+        return filterStatus === 'All' ? true : character.status === filterStatus;
+      });
   };
 
   const renderFilterResults = <CharacterList characters={renderFilteredCharacters()} renderStatusIcon={renderStatusIcon} />;
 
-  const renderFilterError = <ErrorFilter filterName={filterName} handleFilterCharacters={handleFilterCharacters} />;
+  const renderFilterError = (
+    <ErrorFilter filterName={filterName} filterSpecies={filterSpecies} filterStatus={filterStatus} handleFilterCharacters={handleFilterCharacters} />
+  );
 
   const renderSearchResult = renderFilteredCharacters().length === 0 ? renderFilterError : renderFilterResults;
 
@@ -99,7 +123,12 @@ const App = () => {
       <Header />
       <main className="main">
         <Route exact path="/">
-          <Filters handleFilterCharacters={handleFilterCharacters} filterName={filterName} />
+          <Filters
+            handleFilterCharacters={handleFilterCharacters}
+            filterName={filterName}
+            filterSpecies={filterSpecies}
+            filterStatus={filterStatus}
+          />
           {renderSearchResult}
         </Route>
         <Switch>

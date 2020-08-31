@@ -10,11 +10,12 @@
   right: 0;
   z-index: 3;
   padding-right: 50px;
-  height: 100px;
+  height: 200px;
   font-family: $primary-font;
   padding: 30px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   &__label {
     margin: 10px;
     display: flex;
@@ -28,7 +29,7 @@
     display: block;
   }
   &__input {
-    width: 140px;
+    width: 120px;
     padding: 3px 10px;
     background-color: $main-color;
     color: $text-color;
@@ -36,9 +37,21 @@
     border-radius: 5px;
     font-size: 12px;
   }
+  &__button {
+    cursor: pointer;
+    padding: 0;
+    font-size: 20px;
+    width: 30px;
+    height: 31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   @include tablet {
     top: 0;
     background-color: transparent;
     width: auto;
+    height: 100px;
+    flex-wrap: nowrap;
   }
 }
