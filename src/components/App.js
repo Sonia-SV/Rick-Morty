@@ -30,27 +30,27 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    // const data = JSON.parse(localStorage.getItem('localData'));
-    // if (data) {
-    //   setFilterName(data);
-    //   setFilterStatus(data);
-    //   setFilterSpecies(data);
-    // }
-    let localInfo = localStorage.get('localData', {});
+    let localData = localStorage.get('localData');
+    setFilterName(localData.filterName);
+    setFilterSpecies(localData.filterSpecies);
+    setFilterStatus(localData.filterStatus);
   }, []);
   useEffect(() => {
     localStorage.set('localData', { filterName, filterSpecies, filterStatus });
-    // localStorage.setItem('filter', JSON.stringify(filterName, filterSpecies, filterStatus));
   });
+
+  const resetState = () => {
+    setFilterName('');
+    setFilterSpecies('All');
+    setFilterStatus('All');
+  };
 
   const handleFilterCharacters = (data) => {
     if (data.key === 'name') {
       setFilterName(data.value);
     }
     if (data.key === 'reset') {
-      setFilterName('');
-      setFilterSpecies('All');
-      setFilterStatus('All');
+      resetState();
     }
     if (data.key === 'species') {
       setFilterSpecies(data.value);
