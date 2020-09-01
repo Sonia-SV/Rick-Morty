@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import getDataFromApi from '../services/api';
-import localStorage from '../services/localStorage.js';
 import Header from './Header';
 import Footer from './Footer';
 import Filters from './Filters';
@@ -30,13 +29,15 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    let localData = localStorage.get('localData');
-    setFilterName(localData.filterName);
-    setFilterSpecies(localData.filterSpecies);
-    setFilterStatus(localData.filterStatus);
+    const data = JSON.parse(localStorage.getItem('filter'));
+    if (data) {
+      setFilterName(data.filterName);
+      setFilterSpecies(data.filterSpecies);
+      setFilterStatus(data.filterStatus);
+    }
   }, []);
   useEffect(() => {
-    localStorage.set('localData', { filterName, filterSpecies, filterStatus });
+    localStorage.setItem('filter', JSON.stringify({ filterName, filterSpecies, filterStatus }));
   });
 
   const resetState = () => {
